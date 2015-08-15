@@ -274,7 +274,7 @@ string contentofPost(const string &postname) {
 	ret += pdd::transform(postname);
 	ret += "<div class=\"postend\">";
 	ret += "<p>";
-	ret += "Category: <a href=\"public/category/" + category + "/\">" + category + "</a>.";
+	ret += "Category: <a href=\"/archives/" + category + "/\">" + category + "</a>.";
 	ret += "</p>";	
 	ret += "<div class=\"ds-thread\" data-thread-key=\"" + postname + "\" data-title=\"" + headline + "\" data-url=\"" + url + "\"></div><script type=\"text/javascript\">var duoshuoQuery = {short_name:\"" + duoshuoname + "\"};(function() {var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>";
 	ret += "</div></div></div>";
