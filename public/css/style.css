@@ -1,0 +1,141 @@
+body {
+	background: #F8F8FA url('background.png') fixed center center;
+}
+.footer {
+	background-color: #F8F8FA;
+	position: relative;
+	top: 100px;
+	left: 5%;	
+	width: 90%;
+	height: 40px;
+	clear: both;
+	padding-top: 20px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: lighter;
+	font-size: 18px;
+	text-align: center;
+	border-top:	1px solid #D3D3D3;
+	color: #000000; 
+} 
+
+.footer a{
+	color: #0099FF;
+	font-weight: bold;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+
+.header {
+	position: relative;
+	height: 100px;
+	width: 100%;
+	border-bottom: 1px solid #D3D3D3;
+}
+
+.article {
+	border-bottom: 1px solid #D3D3D3;
+}
+.header a{
+	color: #708090;
+}
+.header a:hover{
+	color: #9685BA;
+}
+.header h1 {	
+	position: relative;
+	display: inline-block;
+	left: 7%;
+	top: -20px;
+	height: 80px;
+	width: 40%;
+	font-size: 52px;
+	font-weight: lighter;
+	font-family: "Open Sans", sans-serif; 
+}
+
+.header #toolbar {
+	position: relative;
+	font-size: 28px;
+	font-weight: lighter;	
+	font-family: "Open Sans", sans-serif;
+	float: right;
+	padding-top: 15px;
+	text-align: center;
+	height: 50px;
+	width: 50%;
+	display: inline-block;	
+}
+
+.header #toolbar li{
+	position: relative;
+	display: inline-block;
+	height: 50px;
+	width: 25%;
+}
+
+.container {
+	background-color: #F8F8FA;
+	top: 30px;	
+	width: 80%;
+	position: relative;
+	left: 10%;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+}
+
+.container a{
+	color: #0099FF;
+}
+.container .post{
+	padding: 3%;
+	font-family: "Open Sans", sans-serif;
+}
+.container .post .posthead {
+	border-bottom: 1px solid #CCCCCC;
+}
+.container .post .posthead h1{
+	text-align: center;
+	font-weight: lighter;
+}
+.container .post .posthead h2{
+	text-align: center;
+	color: #708090;	
+	font-weight: lighter;
+}
+.container .post .postend{
+	border-top: 1px solid #CCCCCC;
+}
+.container a:hover{
+	color: #9685BA;
+}
+
+.article {
+	list-style-type: circle;
+}
+
+.postname {
+	position: relative;
+	width: 65%;
+	height: 22px;	
+	display: inline-block;
+	padding-left: 5%;
+	text-align: left;
+}
+
+.info {
+	position: relative;
+	left: 6%;
+	width: 15%;
+	height: 22px;
+	display: inline-block;
+	padding-right: 10%;
+	font-weight: lighter;
+	text-align: left;
+}
+.container p {
+	font-size: 20px;
+	font-family: "Open Sans", sans-serif;
+}
