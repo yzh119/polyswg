@@ -171,13 +171,18 @@ void getBasicInfo() {
 	header += "</head>";
 	header += "<body>";
 	{
-		header += "<div class=\"header\">";
-		header += "<h1>";
+		header += "<div class=\"nav\">";
+		header += "<ul class=\"posleft\">";
+		header += "<li>";
 		header += "<a href=\"/\">" + title + "</a>";
-		header += "</h1>";	
-		header += "<ul id = \"toolbar\">";
+		header += "</li>";	
+		header += "</ul>";
+		header += "<ul class=\"posright\">";
 		header += "<li><a href=\"/archives\">";
 		header += "Archives";
+		header += "</a></li>";
+		header += "<li><a href=\"/notes\">";
+		header += "Notes";
 		header += "</a></li>";
 		header += "<li><a href=\"/posts/about\">";
 		header += "About";
