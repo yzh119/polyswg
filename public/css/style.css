@@ -3,9 +3,12 @@ body {
 }
 .footer {
 	background-color: #F8F8FA;
+	background-image: linear-gradient(to top, #F8F8FA, #FFFFFF);
 	position: relative;
-	top: 100px;	
-	width: 100%;
+	top: 150px;
+	bottom: 0px;
+	width: 102%;
+	left: -1%;
 	height: 40px;
 	clear: both;
 	padding-top: 20px;
@@ -18,9 +21,18 @@ body {
 }
 
 .nav {
+	z-index: 10;
+	position: fixed;
+	opacity: 0.95;
+	top: 0px;
+	left: 0px;
+	right: 0px;	
 	width: 100%;
 	height: 60px;
 	border-bottom: 1px solid #D3D3D3;
+	background-color: #F8F8FA;
+	background-image: linear-gradient(to bottom, #F8F8FA, #FFFFFF);
+	overflow: hidden;
 }
 
 .nav li{
@@ -37,10 +49,12 @@ body {
 
 .nav a:hover{
 	color: #9685BA;
+	text-shadow: 0px 0px 5px #555;
 }
 .nav .posleft{
 	float: left;
 }
+
 .nav .posright{
 	float: right;
 }
@@ -52,7 +66,9 @@ body {
 	color: #0099FF;
 	font-weight: bold;
 }
-
+.footer a:hover{
+	text-shadow: 0px 0px 1px #0099FF;
+}
 a {
 	color: #000000;
 	text-decoration: none;
@@ -64,8 +80,9 @@ a {
 
 .container {
 	float: left;
-	background-color: #F8F8FA;
-	top: 30px;	
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 2px #D3D3D3;
+	top: 90px;
 	width: 80%;
 	position: relative;
 	left: 10%;
@@ -96,7 +113,7 @@ a {
 	border-top: 1px solid #CCCCCC;
 }
 .container a:hover{
-	color: #9685BA;
+	text-shadow: 0px 0px 1px #0099FF;
 }
 
 .article {
@@ -125,4 +142,26 @@ a {
 .container p {
 	font-size: 20px;
 	font-family: "Open Sans", sans-serif;
+}
+
+img {
+	display: block;
+	box-shadow: 0px 0px 10px #555;
+	border-radius:	5px;
+	margin: 10px auto;
+}
+
+.hr1 {
+	border-top: 1px solid #CCCCCC;
+}
+
+code {
+	box-shadow: 0px 0px 5px #555;
+}
+
+blockquote {
+	background-color: #F8F8FA;
+	border-left: 10px solid #CCCCCC;
+	background-image: linear-gradient(to right, #F8F8FA, #FFFFFF);
+	padding-left: 10px;
 }

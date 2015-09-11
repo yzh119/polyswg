@@ -68,7 +68,7 @@ void startServer() {
 }
 
 void addcategory(const string &newcat) {
-	ifstream fin("archives.txt");
+	ifstream fin("category.txt");
 	bool flag = 0;
 	while (!fin.eof()) {
 		string catname;
@@ -85,7 +85,7 @@ void addcategory(const string &newcat) {
 
 	fin.close();
 	if (!flag) {
-		ofstream fout("archives.txt", ios::app);
+		ofstream fout("category.txt", ios::app);
 		fout << newcat << endl;
 		fout.close();
 	}
@@ -136,7 +136,7 @@ void addPost() {
 	fout << category << endl;	
 	addcategory(category);
 	fout.close();
-	fout.open(("archives/" + category + ".txt").c_str(), ios::app);
+	fout.open(("category/" + category + ".txt").c_str(), ios::app);
 	fout << postname << endl;
 	fout.close();
 }
@@ -178,10 +178,10 @@ void getBasicInfo() {
 		header += "</li>";	
 		header += "</ul>";
 		header += "<ul class=\"posright\">";
-		header += "<li><a href=\"/archives\">";
-		header += "Archives";
+		header += "<li><a href=\"/category\">";
+		header += "Category";
 		header += "</a></li>";
-		header += "<li><a href=\"/notes\">";
+		header += "<li><a href=\"/posts/notes\">";
 		header += "Notes";
 		header += "</a></li>";
 		header += "<li><a href=\"/posts/about\">";
@@ -198,7 +198,7 @@ void getBasicInfo() {
 		}
 		fin.close();
 	}
-	footer += "<div class=\"footer\">Copyright ©";
+	footer += "<div class=\"footer\">Copyright #copy;";
 	footer += startyear + "-";
    	footer += getYear() + " ";
     footer += "<a href=\"/\">" + title + "</a>. Powered by <a href=\"https://github.com/yzh119/polyswg\">polyswg</a></div></body></html>";
@@ -222,18 +222,20 @@ string contentofIndex() {
 			headline.push_back(shead);
 			fin1.getline(stime, lineLength - 10);
 			postTime.push_back(stime);
+			
 			fin1.close();
 		}
 	}
 	ret += "<ul>";
 	for (int i = (int)headline.size() - 1; i >= 0; i--) {
 		if (postname[i] == "about") continue;
+		if (postname[i] == "notes") continue;
 		ret += "<li class=\"article\">";
 		ret += "<p class=\"postname\">";
 		ret += "<a href=\"posts/" + postname[i] + "/" + "\">" + headline[i] + "</a></p>";
 		ret += "<p class=\"info\">";
 		ret += postTime[i];
-		ret += "</p>";
+		ret += "</p>";	
 		ret += "</li>";
 	}
 	ret += "</ul>";
@@ -279,16 +281,16 @@ string contentofPost(const string &postname) {
 	ret += pdd::transform(postname);
 	ret += "<div class=\"postend\">";
 	ret += "<p>";
-	ret += "Category: <a href=\"/archives/" + category + "/\">" + category + "</a>.";
+	ret += "Category: <a href=\"/category/" + category + "/\">" + category + "</a>.";
 	ret += "</p>";	
 	ret += "<div class=\"ds-thread\" data-thread-key=\"" + postname + "\" data-title=\"" + headline + "\" data-url=\"" + url + "\"></div><script type=\"text/javascript\">var duoshuoQuery = {short_name:\"" + duoshuoname + "\"};(function() {var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>";
 	ret += "</div></div></div>";
 	return ret;
 }
 
-string contentofArchives() {
+string contentofcategory() {
 	string ret = "<div class=\"container\">";
-	ifstream fin("archives.txt");
+	ifstream fin("category.txt");
 	ret += "<ul>";
 	while (!fin.eof()) {
 		string catename;
@@ -299,6 +301,7 @@ string contentofArchives() {
 		}
 		if (catename == "") continue;
 		if (catename == "about") continue;
+		if (catename == "notes") continue;
 		ret += "<li class=\"article\">";
 		ret += "<p class=\"postname\">";
 		ret += "<a href=\"" + catename + "/" + "\">" + catename + "</a></p>";
@@ -318,12 +321,12 @@ inline string generatePostHTML(const string &postname) {
 	return header + contentofPost(postname) + footer;
 }
 
-inline string generateArchives() {
-	return header + contentofArchives() + footer;
+inline string generatecategory() {
+	return header + contentofcategory() + footer;
 }
 
 void generateCategory() {
-	ifstream fin("archives.txt");
+	ifstream fin("category.txt");
 	while (!fin.eof()) {
 		string catname;
 		{
@@ -332,10 +335,11 @@ void generateCategory() {
 			catname = scat;
 		}
 		if (catname == "about") continue;
+		if (catname == "notes") continue;
 		if (catname == "") continue;
-		createFile("public/archives/" + catname);
-		ofstream fout(("public/archives/" + catname + "/index.html").c_str());
-		ifstream fin1(("archives/" + catname + ".txt").c_str());
+		createFile("public/category/" + catname);
+		ofstream fout(("public/category/" + catname + "/index.html").c_str());
+		ifstream fin1(("category/" + catname + ".txt").c_str());
 		fout << header << endl;
 		fout << "<div class=\"container\">";
 		vector <string> headline, postTime, postname;
@@ -358,7 +362,6 @@ void generateCategory() {
 		}
 		fout <<  "<ul>";
 		for (int i = (int)headline.size() - 1; i >= 0; i--) {
-			if (postname[i] == "about") continue;
 			fout << "<li class=\"article\">";
 			fout << "<p class=\"postname\">";
 			fout << "<a href=\"/posts/" + postname[i] + "/" + "\">" + headline[i] + "</a></p>";
@@ -375,6 +378,7 @@ void generateCategory() {
 	}
 	fin.close();
 }
+
 /* Generate static websites from your post.
  * Usage: 'pswg -g'
  */
@@ -385,12 +389,12 @@ void generateHTML() {
 	fout.close();	
 	cout << "index.html finished." << endl;
 
-	fout.open("public/archives/index.html");
-	fout << generateArchives() << endl;
+	fout.open("public/category/index.html");
+	fout << generatecategory() << endl;
 	fout.close();
 
 	generateCategory();
-	cout << "archives finished." << endl;
+	cout << "category finished." << endl;
 
 	ifstream fin("postname.txt");
 	while (!fin.eof()) {
@@ -427,15 +431,9 @@ void initialize() {
 	createFile("public");
 	createFile("article");
 	createFile("public/posts");
-	createFile("public/about");
-	createFile("public/archives");
-	createFile("archives");
+	createFile("public/category");
+	createFile("category");
 	ofstream fout1("config.txt");
-	ofstream fout2("header.txt", ios::app);
-	ofstream fout3("footer.txt", ios::app);
-	ofstream fout4("postname.txt", ios::app);
-	ofstream fout5("archives.txt", ios::app);
-	ofstream fout6("category.txt", ios::app);
 	char lang[lineLength], hostname[lineLength], title[lineLength], duoshuo[lineLength];
 	cout << "Please tell us the language you want to use (zh / en)." << endl;
 	cin.getline(lang, lineLength);
@@ -452,10 +450,13 @@ void initialize() {
 	fout1 << getYear() << endl;
 	cout << "If you want to add some code to your HTML's header or footer, please add your code in header.txt and footer.txt." << endl;
 	fout1.close();
-	fout2.close();
-	fout3.close();
-	fout4.close();
-	fout5.close();
-	fout6.close();
+	fout1.open("header.txt", ios::app);
+	fout1.close();
+	fout1.open("footer.txt", ios::app);
+	fout1.close();
+	fout1.open("postname.txt", ios::app);
+	fout1.close();
+	fout1.open("category.txt", ios::app);
+	fout1.close();
 }
 #endif
