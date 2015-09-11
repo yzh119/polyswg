@@ -1,5 +1,6 @@
 body {
-	background-color: #F8F8FA;
+	/*background-color: #F8F8FA;*/
+	background: #F8F8FA url("background.png") fixed center center;
 }
 .footer {
 	background-color: #F8F8FA;
