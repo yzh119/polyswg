@@ -164,6 +164,7 @@ img {
 
 code {
 	border: 1px solid #CCCCCC;
+	border-radius: 2px;
 }
 
 blockquote {
@@ -190,9 +191,12 @@ code {
 	background-color: #F8F8FA;
 	border-radius: 10px;
 	margin: 10px;
-	border: 1px solid #CCCCCC; 
+	border: 1px solid #CCCCCC;
+	font-weight: lighter; 
 }
-
+.TOC h2{
+	font-weight: lighter;
+}
 .backtotop {
 	z-index: 10;
 	opacity: 0.5;
@@ -206,6 +210,7 @@ code {
 	border: 1px solid #F8F8FA;
 	font-size: 30px;
 	margin: 0 auto;
+	cursor: pointer;
 	text-align: center;
 }
 

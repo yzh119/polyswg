@@ -191,7 +191,12 @@ code {
 	background-color: #F8F8FA;
 	border-radius: 10px;
 	margin: 10px;
-	border: 1px solid #CCCCCC; 
+	border: 1px solid #CCCCCC;
+	font-weight: lighter; 
+}
+
+.TOC h2{
+	font-weight: lighter;
 }
 
 .backtotop {
@@ -207,6 +212,7 @@ code {
 	border: 1px solid #F8F8FA;
 	font-size: 30px;
 	margin: 0 auto;
+	cursor: pointer;
 	text-align: center;
 }
 
