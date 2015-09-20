@@ -23,7 +23,7 @@ body {
 .nav {
 	z-index: 10;
 	position: fixed;
-	opacity: 0.95;
+	opacity: 0.8;
 	top: 0px;
 	left: 0px;
 	right: 0px;	
@@ -81,18 +81,24 @@ a {
 .container {
 	float: left;
 	background-color: #FFFFFF;
-	box-shadow: 0px 0px 2px #D3D3D3;
+	box-shadow: 0px 0px 2px 2px #D3D3D3;
 	top: 90px;
 	width: 80%;
 	position: relative;
 	left: 10%;
 	border: 1px solid #CCCCCC;
 	border-radius: 10px;
+	font-size: 18px;
+}
+
+.container h4, h5, h6{
+	font-size: 20px;
 }
 
 .container a{
 	color: #0099FF;
 }
+
 .container .post{
 	padding: 3%;
 	font-family: "Open Sans", sans-serif;
@@ -112,6 +118,7 @@ a {
 .container .post .postend{
 	border-top: 1px solid #CCCCCC;
 }
+
 .container a:hover{
 	text-shadow: 0px 0px 1px #0099FF;
 }
@@ -139,8 +146,8 @@ a {
 	font-weight: lighter;
 	text-align: left;
 }
-.container p {
-	font-size: 20px;
+
+.container {
 	font-family: "Open Sans", sans-serif;
 }
 
@@ -156,7 +163,8 @@ img {
 }
 
 code {
-	box-shadow: 0px 0px 5px #555;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
 }
 
 blockquote {
@@ -164,4 +172,44 @@ blockquote {
 	border-left: 10px solid #CCCCCC;
 	background-image: linear-gradient(to right, #F8F8FA, #FFFFFF);
 	padding-left: 10px;
+}
+
+code {
+	font-size: 18px;
+}
+
+.TOC .cont li {
+	list-style-type: none;
+}
+
+.TOC .cont {
+	margin: 20px;
+}
+
+.TOC {
+	width: 35%;
+	background-color: #F8F8FA;
+	border-radius: 10px;
+	margin: 10px;
+	border: 1px solid #CCCCCC; 
+}
+
+.backtotop {
+	z-index: 10;
+	opacity: 0.5;
+	position: fixed;
+	right: 5%;
+	bottom: 100px;
+	width: 50px;
+	height: 50px;
+	background-color: #555555;
+	border-radius: 5px;
+	border: 1px solid #F8F8FA;
+	font-size: 30px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.backtotop:hover{
+	background-color: #0099FF;
 }

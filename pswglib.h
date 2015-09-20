@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "parsepdd.h"
+#include "md2html4cpp/transform.h"
 #include <boost/date_time/gregorian/greg_month.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/filesystem.hpp>
@@ -27,8 +27,8 @@ void printHelpInfo() {
 	cout << "	pswg -d: upload your HTML files to your server." << endl;
 	cout << "	pswg -i: initialize your website." << endl;
 	cout << "	pswg -s: start server, you can browse your website at http://0.0.0.0:8000 " << endl;
-	cout << "We use a easy language polyamarkdown (similar to Markdown) to write your post. The suffix of your post's filename will be '.pdd'." << endl;
-	cout << "All posts will be in two parts: YOUR_POST_FILENAME.pdd, YOUR_POST_FILENAME.txt, the first is your post and the second is the config files, mainly about your post's name, time and other informations." << endl;
+	cout << "Your post should be written in Markdown Language. The suffix of your post's filename will be '.md'." << endl;
+	cout << "All posts will be in two parts: YOUR_POST_FILENAME.md, YOUR_POST_FILENAME.txt, the first is your post and the second is the config files, mainly about your post's name, time and other informations." << endl;
 	cout << "You should make sure that you've initialized before other commands." << endl;
 }		
 
@@ -103,7 +103,7 @@ void addPost() {
 		postname = spn;
 	}
 
-	ifstream fin(("article/" + postname + ".pdd").c_str());
+	ifstream fin(("article/" + postname + ".md").c_str());
 	if (fin) {
 		cout << "Sorry, there exists a post which has the same name with yours." << endl;
 		fin.close();
@@ -113,7 +113,7 @@ void addPost() {
 	fout << postname << endl;
 	fout.close();
 	
-	fout.open(("article/" + postname + ".pdd").c_str());
+	fout.open(("article/" + postname + ".md").c_str());
 	fout.close();
 	
 	fout.open(("article/" + postname + ".dsb").c_str());
@@ -198,7 +198,7 @@ void getBasicInfo() {
 		}
 		fin.close();
 	}
-	footer += "<div class=\"footer\">Copyright #copy;";
+	footer += "<div class=\"footer\">Copyright &copy;";
 	footer += startyear + "-";
    	footer += getYear() + " ";
     footer += "<a href=\"/\">" + title + "</a>. Powered by <a href=\"https://github.com/yzh119/polyswg\">polyswg</a></div></body></html>";
@@ -271,6 +271,7 @@ string contentofPost(const string &postname) {
 		duoshuoname = cduoshuo;
 		url = curl;
 	}
+	mdtransform newpost("article/" + postname + ".md");
 	url += "/posts/" + postname;
 	ret += headline;
 	ret += "</h1>";
@@ -278,8 +279,15 @@ string contentofPost(const string &postname) {
 	ret += publishTime;
 	ret += "</h2>";
 	ret += "</div>";
-	ret += pdd::transform(postname);
+	ret += "<div class=\"TOC\">";
+	ret += "<div class=\"cont\">";
+	ret += "<h2>Content</h2>";
+	ret += newpost.getTableOfContents();
+	ret += "</div>";
+	ret += "</div>";
+	ret += newpost.getContent();
 	ret += "<div class=\"postend\">";
+	ret += "<a class=\"backtotop\" style=\"color:#CCCCCC\"  href=\"#\">&uarr;</a>";
 	ret += "<p>";
 	ret += "Category: <a href=\"/category/" + category + "/\">" + category + "</a>.";
 	ret += "</p>";	
