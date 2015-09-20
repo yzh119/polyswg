@@ -9,6 +9,7 @@
 
 #安装
 需要预先安装boost库，boost库安装教程可见http://www.boost.org.  
+Markdown解析库需要下载至本目录<http://github.com/yzh119/md2html4cpp>.  
 安装完成之后运行
 `g++ pswg.cpp -o pswg -lboost_filesystem -lboost_system -lboost_date_time`
 即可。
