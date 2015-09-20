@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "md2html4cpp/transform.h"
+#include "transform.h"
 #include <boost/date_time/gregorian/greg_month.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/filesystem.hpp>

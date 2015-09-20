@@ -5,7 +5,7 @@
 *	添加文章，生成归档。
 *	加载了highlight.js和Mathjax，支持数学公式输入。
 *	支持多说评论。
-*	使用Markdown标记语言
+*	使用Markdown标记语言，使用了我写的一个非常简陋的markdown解析器:https://github.com/yzh119/md2html4cpp  
 
 #安装
 需要预先安装boost库，boost库安装教程可见http://www.boost.org.  
