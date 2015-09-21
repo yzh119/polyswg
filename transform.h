@@ -316,7 +316,7 @@ class mdtransform{
 					continue;
 				}
 
-				if (ch == '`') {
+				if (ch == '`' && !inautolink) {
 					if (incode) {
 						v->ch.push_back(new node(nul));
 					} else v->ch.push_back(new node(code));
@@ -324,7 +324,7 @@ class mdtransform{
 					continue;
 				}
 
-				if (ch == '$' && !incode) {
+				if (ch == '$' && !incode && !inautolink) {
 					bool blk = false;
 					if (i < n - 1 && src[i + 1] == '$') {ch = src[++i]; blk = true;}
 					if (inmath) {
@@ -338,7 +338,7 @@ class mdtransform{
 					continue;
 				}
 
-				if ((ch == '*' || ch == '_') && (i < n - 1 && (src[i + 1] == '*' || src[i + 1] == '_')) && !incode && !inmath) {
+				if ((ch == '*' || ch == '_') && (i < n - 1 && (src[i + 1] == '*' || src[i + 1] == '_')) && !incode && !inmath && !inautolink) {
 					++i;
 					if (instrong) {
 						v->ch.push_back(new node(nul));
@@ -347,7 +347,7 @@ class mdtransform{
 					continue;
 				}
 
-				if ((ch == '*' || ch == '_') && !incode && !inmath && !instrong) {
+				if ((ch == '*' || ch == '_') && !incode && !inmath && !instrong && !inautolink) {
 					if (inem) {
 						v->ch.push_back(new node(nul));
 					} else v->ch.push_back(new node(em));
